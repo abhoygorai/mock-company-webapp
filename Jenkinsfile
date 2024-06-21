@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     // Build the application
-                    sh './gradlew assemble'
+                    bat './gradlew assemble'
                 }
             }
         }
@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     // Run tests
-                    sh './gradlew test'
+                    bat './gradlew test'
                 }
             }
         }
