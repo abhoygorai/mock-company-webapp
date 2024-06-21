@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    // Build the application
                     sh './gradlew assemble'
                 }
             }
@@ -12,10 +13,10 @@ pipeline {
         stage('Test') {
             steps {
                 script {
+                    // Run tests
                     sh './gradlew test'
                 }
             }
         }
     }
 }
-
