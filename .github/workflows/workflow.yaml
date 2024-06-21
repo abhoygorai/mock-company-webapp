@@ -22,17 +22,22 @@ jobs:
         with:
           node-version: '18.20.3'
 
-      - name: Install Yarn
-        run: npm install -g yarn
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew assemble
+        run: ./gradlew assemble --info
 
       - name: Run tests with Gradle
-        run: ./gradlew test
+        run: ./gradlew test --info
